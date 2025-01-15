@@ -1,16 +1,16 @@
 # qutil
-Template C++23 static library containing useful containers and algorithms.
+A C++23 template static library providing useful containers and algorithms
 
-## Content
+## Features
 - [x] **[tuple](https://github.com/wandvvs/qutil/blob/master/examples/tuple/tuple.cpp)**
 - [x] **[constexpr_string](https://github.com/wandvvs/qutil/blob/master/examples/constexpr_string/constexpr_string.cpp)**
-- [ ] result<T,E>
-- [ ] logger
+- [ ] **result<T,E>**
+- [ ] **logger**
 
- ## **Build**
+ ## **Installation**
 ```bash
 git clone https://github.com/wandvvs/qutil.git
 cd qutil
 sudo ./install.sh
 ```
-**[Usage in project with CMake example](https://github.com/wandvvs/qutil/blob/master/examples/tuple/CMakeLists.txt)**
+For an example of how to use qutil in a CMake project, see the following [CMakeLists.txt](https://github.com/wandvvs/qutil/blob/master/examples/tuple/CMakeLists.txt)
