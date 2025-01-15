@@ -1,9 +1,9 @@
 # qutil
-Qutil - template C++23 static library containing useful containers and algorithms.
+**Qutil** - template C++23 static library containing useful containers and algorithms.
 
 ## Content
-- [x] [tuple](https://github.com/wandvvs/qutil/blob/master/examples/tuple/tuple.cpp)
-- [x] [constexpr_string](https://github.com/wandvvs/qutil/blob/master/examples/constexpr_string/constexpr_string.cpp)
+- [x] **[tuple](https://github.com/wandvvs/qutil/blob/master/examples/tuple/tuple.cpp)**
+- [x] **[constexpr_string](https://github.com/wandvvs/qutil/blob/master/examples/constexpr_string/constexpr_string.cpp)**
 - [ ] result<T,E>
 - [ ] logger
 
