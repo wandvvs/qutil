@@ -1,5 +1,5 @@
 # qutil
-**qutil** - template C++23 static library containing useful containers and algorithms.
+Template C++23 static library containing useful containers and algorithms.
 
 ## Content
 - [x] **[tuple](https://github.com/wandvvs/qutil/blob/master/examples/tuple/tuple.cpp)**
