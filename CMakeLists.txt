@@ -27,5 +27,6 @@ option(BUILD_EXAMPLES "Build example projects" OFF)
 
 if(BUILD_EXAMPLES)
     add_subdirectory(examples/tuple)
+    add_subdirectory(examples/constexpr_string)
 endif()
 
