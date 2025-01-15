@@ -8,7 +8,9 @@
 - [ ] logger
 
  ## **Build**
-- git clone https://github.com/wandvvs/qutil.git
-- cd qutil
-- sudo ./install.sh
-- [Usage in project with CMake example](https://github.com/wandvvs/qutil/blob/master/examples/tuple/CMakeLists.txt)
+```bash
+git clone https://github.com/wandvvs/qutil.git
+cd qutil
+sudo ./install.sh
+```
+**[Usage in project with CMake example](https://github.com/wandvvs/qutil/blob/master/examples/tuple/CMakeLists.txt)**
