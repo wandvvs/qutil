@@ -92,7 +92,6 @@ class tuple<Head, Tail...> {
 
   constexpr tuple(const tuple &) = default;
   constexpr tuple(tuple &&) = default;
-  constexpr tuple(tuple &) = default;
 
   constexpr auto operator==(const tuple<Head, Tail...> &other) const -> bool {
     return [&]<std::size_t... Is>(std::index_sequence<Is...>) {
@@ -237,7 +236,7 @@ constexpr auto forward_as_tuple(Types &&...args) -> decltype(auto) {
 template <class Tuple, class F>
 constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto) {
   return []<std::size_t... Is>(Tuple &&tuple, F &&f, std::index_sequence<Is...>) {
-    (f(get<Is>(tuple)), ...);
+    (f(get<Is>(std::forward<Tuple>(tuple))), ...);
     return f;
   }(std::forward<Tuple>(tuple), std::forward<F>(f), std::make_index_sequence<tuple_size_v<std::remove_reference_t<Tuple>>>{});
 }
@@ -296,6 +295,6 @@ constexpr auto apply(F &&f, T &&t) -> decltype(auto) {
 }
 
 template <class... Types>
-tuple(Types &&...) -> tuple<std::decay_t<Types>...>;
+tuple(Types &&...) -> tuple<Types...>;
 
 }  // namespace qutil

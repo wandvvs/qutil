@@ -1,1 +1,3 @@
 build/
+include/qutil/.clang-tidy
+include/qutil/.clang-format

@@ -5,6 +5,7 @@ set -e
 LIB_DIR=$(pwd)
 
 echo -e "\033[1;34mBuilding the main library...\033[0m"
+rm -rfd "$LIB_DIR/build"
 mkdir -p "$LIB_DIR/build"
 cd "$LIB_DIR/build"
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
