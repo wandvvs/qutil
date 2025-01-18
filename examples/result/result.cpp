@@ -11,11 +11,11 @@ struct division_error {
   std::string reason;
 };
 
-auto division(float x, float y) -> result<float, division_error> {
+auto division(float x, float y) -> qutil::result<float, division_error> {
   if(y == 0) {
-    return err(division_error(division_error::error_kind::division_by_zero, "Division by zero"));
+    return qutil::err(division_error(division_error::error_kind::division_by_zero, "Division by zero"));
   }
-  return ok(x / y);
+  return qutil::ok(x / y);
 }
 
 auto main() -> int {

@@ -1,6 +1,7 @@
 #include <utility>
 #include <variant>
 
+namespace qutil {
 template <class OkT, class ErrT>
 struct result;
 
@@ -77,3 +78,5 @@ struct result {
     return std::get<err<ErrT>>(variant_).take_value();
   }
 };
+
+}  // namespace qutil
