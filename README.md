@@ -1,7 +1,7 @@
 # qutil
 A C++23 template static library providing useful containers and algorithms
 
-## Features
+## Features examples
 - [x] **[tuple](https://github.com/wandvvs/qutil/blob/master/examples/tuple/tuple.cpp)**
 - [x] **[constexpr_string](https://github.com/wandvvs/qutil/blob/master/examples/constexpr_string/constexpr_string.cpp)**
 - [x] **[result<T, E>](https://github.com/wandvvs/qutil/blob/master/examples/result/result.cpp)**
