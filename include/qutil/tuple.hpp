@@ -85,6 +85,7 @@ template <class Head, class... Tail>
 class tuple<Head, Tail...> {
  public:
   template <class H, class... T>
+    requires(sizeof...(T) == sizeof...(Tail) && sizeof(H) == sizeof(Head))
   constexpr explicit tuple(H &&head, T &&...tail) : head_(std::forward<H>(head)), tail_(std::forward<T>(tail)...) {
   }
 
