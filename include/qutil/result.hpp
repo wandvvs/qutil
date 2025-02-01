@@ -15,7 +15,11 @@ struct ok {
   explicit constexpr ok(T&& value) : value_(std::move(value)) {
   }
 
-  [[nodiscard]] constexpr auto value() -> decltype(auto) {
+  [[nodiscard]] constexpr auto value() {
+    return value_;
+  }
+
+  [[nodiscard]] constexpr auto value() const {
     return value_;
   }
 
@@ -35,7 +39,11 @@ struct err {
   explicit constexpr err(T&& value) : value_(std::move(value)) {
   }
 
-  [[nodiscard]] constexpr auto value() -> decltype(auto) {
+  [[nodiscard]] constexpr auto value() {
+    return value_;
+  }
+
+  [[nodiscard]] constexpr auto value() const {
     return value_;
   }
 
