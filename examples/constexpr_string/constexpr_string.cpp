@@ -2,6 +2,9 @@
 
 auto main() -> int {
   constexpr auto str1 = qutil::make_constexpr_string("Hello");
+  constexpr auto c = str1.find('l');
+  static_assert(c == 2);
+
   constexpr qutil::constexpr_string str2(" world");
   constexpr qutil::constexpr_string<4> str3(" by");
 

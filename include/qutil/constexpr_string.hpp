@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <array>
 #include <ostream>
+#include <ranges>
 
 namespace qutil {
 template <std::size_t Size>
@@ -48,6 +49,14 @@ class constexpr_string {
     std::ranges::copy_n(other.begin(), Ssize, res.begin() + Size - 1);
 
     return res;
+  }
+
+  constexpr static std::size_t npos = static_cast<std::size_t>(-1);
+
+  constexpr auto find(char ch, std::size_t pos = 0) const -> std::size_t {
+    const auto sub = std::ranges::views::drop(*this, pos);
+    const auto it = std::ranges::find(sub, ch);
+    return std::ranges::find(sub, ch) != sub.end() ? std::ranges::distance(begin(), it) : npos;
   }
 
   [[nodiscard]] constexpr auto to_string() const -> std::string {
