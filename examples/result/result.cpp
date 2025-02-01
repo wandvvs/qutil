@@ -1,29 +1,31 @@
-#include <iostream>
 #include <qutil/result.hpp>
 
-struct division_error {
-  enum class error_kind { division_by_zero };
-
-  explicit division_error(error_kind kind, std::string reason = "") : kind(kind), reason(std::move(reason)) {
-  }
-
-  error_kind kind;
-  std::string reason;
-};
-
-auto division(float x, float y) -> qutil::result<float, division_error> {
-  if(y == 0) {
-    return qutil::err(division_error(division_error::error_kind::division_by_zero, "Division by zero"));
-  }
-  return qutil::ok(x / y);
-}
+using namespace qutil;
 
 auto main() -> int {
-  auto div = division(5, 0);  // NOLINT
+  constexpr auto f = [](int x) -> result<float, std::string_view> {
+    if(x % 2 == 0) {
+      return ok(static_cast<float>(x));
+    } else {
+      return err("x % 2 != 0");
+    }
+  }(4)
+                                      .and_then([](float x) -> result<int, std::string_view> {
+                                        if(x > 3) {
+                                          return ok(static_cast<int>(x * x));
+                                        } else {
+                                          return err("x < 3");
+                                        }
+                                      })
+                                      .and_then([](int x) -> result<int, void> {
+                                        if(x > 5) {
+                                          return ok(x * 2);
+                                        } else {
+                                          return err();
+                                        }
+                                      });
 
-  if(div.is_okay()) {
-    std::cout << div.ok_value() << std::endl;
-  } else if(div.is_err()) {
-    std::cout << div.err_value().reason;
-  }
+  static_assert(f.value_or(0) != 0);
+  static_assert(f.is_ok() == true);
+  static_assert(f.is_err() == false);
 }
