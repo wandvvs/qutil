@@ -1,8 +1,8 @@
 #pragma once
 
-#include <ostream>
 #include <algorithm>
-#include <ranges>
+#include <array>
+#include <ostream>
 
 namespace qutil {
 template <std::size_t Size>
