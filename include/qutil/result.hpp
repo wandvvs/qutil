@@ -15,8 +15,8 @@ struct ok {
   explicit constexpr ok(T&& value) : value_(std::move(value)) {
   }
 
-  [[nodiscard]] constexpr auto value(this auto&& self) -> decltype(auto) {
-    return std::forward_like<decltype(self)>(self.value_);
+  [[nodiscard]] constexpr auto value() -> decltype(auto) {
+    return value_;
   }
 
   template <class Err>
@@ -35,8 +35,8 @@ struct err {
   explicit constexpr err(T&& value) : value_(std::move(value)) {
   }
 
-  [[nodiscard]] constexpr auto value(this auto&& self) -> decltype(auto) {
-    return std::forward_like<decltype(self)>(self.value_);
+  [[nodiscard]] constexpr auto value() -> decltype(auto) {
+    return value_;
   }
 
   template <class Ok>
