@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <type_traits>
 #include <utility>
 
@@ -22,7 +23,7 @@ class tuple<> {
     return other;
   }
 
-  constexpr auto operator==(const tuple<> &other) -> bool {
+  constexpr auto operator==(const tuple<> &) -> bool {
     return true;
   }
 };
@@ -236,7 +237,7 @@ constexpr auto forward_as_tuple(Types &&...args) -> decltype(auto) {
 template <class Tuple, class F>
 constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto) {
   return []<std::size_t... Is>(Tuple &&tuple, F &&f, std::index_sequence<Is...>) {
-    (f(get<Is>(std::forward<Tuple>(tuple))), ...);
+    (std::invoke(std::forward<F>(f), get<Is>(std::forward<Tuple>(tuple))), ...);
     return f;
   }(std::forward<Tuple>(tuple), std::forward<F>(f), std::make_index_sequence<tuple_size_v<std::remove_reference_t<Tuple>>>{});
 }
@@ -244,7 +245,7 @@ constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto) {
 template <class Tuple, class F>
 constexpr auto transform(Tuple &&tuple, F &&f) -> decltype(auto) {
   return []<std::size_t... Is>(Tuple &&tuple, F &&f, std::index_sequence<Is...>) {
-    return make_tuple(f(get<Is>(std::forward<Tuple>(tuple)))...);
+    return make_tuple(std::forward<F>(f)(get<Is>(std::forward<Tuple>(tuple)))...);
   }(std::forward<Tuple>(tuple), std::forward<F>(f), std::make_index_sequence<tuple_size_v<std::remove_reference_t<Tuple>>>{});
 }
 
@@ -272,9 +273,7 @@ constexpr auto tuple_cat(Tuples &&...tuples) {
 
 template <class Tuple, typename Predicate>
 constexpr auto all_of(Tuple &&tuple, Predicate predicate) -> bool {
-  return find_if(std::forward<Tuple>(tuple), [&](auto &&value) {
-           return !predicate(std::forward<decltype(value)>(value));
-         }) == tuple_size_v<std::decay_t<Tuple>>;
+  return find_if(std::forward<Tuple>(tuple), std::not_fn(predicate)) == tuple_size_v<std::decay_t<Tuple>>;
 }
 
 template <class Tuple, typename Predicate>
@@ -290,7 +289,7 @@ constexpr auto any_of(Tuple &&tuple, Predicate predicate) -> bool {
 template <class F, class T>
 constexpr auto apply(F &&f, T &&t) -> decltype(auto) {
   return []<class Func, class Tuple, std::size_t... Is>(Func &&func, Tuple &&tuple, std::index_sequence<Is...>) {
-    return std::forward<Func>(func)(get<Is>(std::forward<Tuple>(tuple))...);
+    return std::invoke(std::forward<Func>(func), get<Is>(std::forward<Tuple>(tuple))...);
   }(std::forward<F>(f), std::forward<T>(t), std::make_index_sequence<tuple_size_v<std::remove_reference_t<T>>>{});
 }
 
