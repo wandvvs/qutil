@@ -29,5 +29,6 @@ if(BUILD_EXAMPLES)
     add_subdirectory(examples/tuple)
     add_subdirectory(examples/constexpr_string)
     add_subdirectory(examples/result)
+    add_subdirectory(examples/dump)
 endif()
 
