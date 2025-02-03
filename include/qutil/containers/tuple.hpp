@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace qutil {
+namespace qutil::containers {
 template <auto Value>
 struct wrapper {
   static constexpr auto value = Value;
@@ -222,7 +222,7 @@ constexpr decltype(auto) get(const tuple<Head, Types...> &&t) noexcept {
 
 template <class... Types>
 constexpr auto make_tuple(Types &&...args) -> decltype(auto) {
-  return qutil::tuple<std::unwrap_ref_decay_t<Types>...>(std::forward<Types>(args)...);
+  return qutil::containers::tuple<std::unwrap_ref_decay_t<Types>...>(std::forward<Types>(args)...);
 }
 
 template <class... Types>
@@ -297,4 +297,4 @@ constexpr auto apply(F &&f, T &&t) -> decltype(auto) {
 template <class... Types>
 tuple(Types &&...) -> tuple<Types...>;
 
-}  // namespace qutil
+}  // namespace qutil::containers

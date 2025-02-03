@@ -1,6 +1,6 @@
-#include <qutil/result.hpp>
+#include <qutil/containers/result.hpp>
 
-using namespace qutil;
+using namespace qutil::containers;
 
 auto main() -> int {
   constexpr auto f = [](int x) -> result<float, std::string_view> {

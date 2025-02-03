@@ -4,7 +4,7 @@
 #include <utility>
 #include <variant>
 
-namespace qutil {
+namespace qutil::containers {
 template <class T, class E>
 struct result;
 
@@ -231,4 +231,4 @@ constexpr auto err() noexcept {
   return detail::err<void>();
 }
 
-}  // namespace qutil
+}  // namespace qutil::containers

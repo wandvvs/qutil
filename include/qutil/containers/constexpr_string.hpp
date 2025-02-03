@@ -5,7 +5,7 @@
 #include <ostream>
 #include <ranges>
 
-namespace qutil {
+namespace qutil::containers {
 template <std::size_t Size>
 class constexpr_string {
  public:
@@ -89,13 +89,13 @@ class constexpr_string {
 
 template <std::size_t Size>
 constexpr constexpr_string<Size> make_constexpr_string(const char (&str)[Size]) {  // NOLINT
-  return qutil::constexpr_string<Size>(str);
+  return qutil::containers::constexpr_string<Size>(str);
 }
 
-}  // namespace qutil
+}  // namespace qutil::containers
 
 template <std::size_t N>
-constexpr auto operator<<(std::ostream& os, const qutil::constexpr_string<N>& str) -> std::ostream& {
+constexpr auto operator<<(std::ostream& os, const qutil::containers::constexpr_string<N>& str) -> std::ostream& {
   os << static_cast<std::string_view>(str);
   return os;
 }
