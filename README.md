@@ -1,5 +1,15 @@
 <h1 align="center">qutil</h1>
-<h4 align="center">Provides modern and useful containers and algorithms.</h4>
+<h3 align="center">Provides modern and useful containers and algorithms.</h3>
+
+<p align="center">
+     <a href="https://github.com/wandvvs/qutil/issues">
+     <img src="https://img.shields.io/github/issues/wandvvs/qutil"
+          alt="GitHub opened issues">
+     <img src="https://img.shields.io/badge/status-in_development-red"
+          alt="Status">
+     <img src="https://img.shields.io/github/stars/wandvvs/qutil?color=lime"
+          alt="Stars">
+</p>
 
  ## **Installation**
 ```bash
