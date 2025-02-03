@@ -23,7 +23,7 @@ For an example of how to use qutil in a CMake project, see the following [CMakeL
 
 ### 🧰 `qutil::containers`
 - `tuple<Args...>` - tumple implementation with additional support functions: `for_each`, `transform`, `find_if`, `all_of`, `none_of`, `any_of`.
-- `constexpr_string<N>` - compile time string.
+- `constexpr_string<N>` - compile-time string.
 - `result<T,E>` - result type for error handling like Rust `Result<T, E`.
 
 ### 📁 `qutil::io`
