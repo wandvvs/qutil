@@ -11,6 +11,9 @@ class constexpr_string {
  public:
   explicit constexpr_string() = default;
   constexpr explicit constexpr_string(std::string_view str) {
+    if constexpr(Size == 0) {
+      return;
+    }
     std::ranges::copy_n(str.begin(), str.size() > this->size() ? str.size() : this->size(), str_.begin());
   }
 
@@ -81,6 +84,18 @@ class constexpr_string {
 
   constexpr auto end() -> char* {
     return str_.end();
+  }
+
+  constexpr auto starts_with(std::string_view sv) const noexcept {
+    return static_cast<std::string_view>(*this).starts_with(sv);
+  }
+
+  constexpr auto end_with(std::string_view sv) const noexcept {
+    return static_cast<std::string_view>(*this).ends_with(sv);
+  }
+
+  constexpr auto contains(char c) const noexcept {
+    return find(c) != npos;
   }
 
  private:

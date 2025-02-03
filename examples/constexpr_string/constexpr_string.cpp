@@ -20,4 +20,11 @@ auto main() -> int {
 
   auto st = sv.to_string();
   static_assert(std::is_same_v<std::string, decltype(st)>);
+
+  constexpr auto str4 = qutil::containers::make_constexpr_string("Hello");
+  static_assert(str4.starts_with("Hel"));
+  static_assert(str4.end_with("lo"));
+  static_assert(str4.contains('e'));
+
+  static_assert(str4.find('e') != decltype(str4)::npos);
 }
