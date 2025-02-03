@@ -1,5 +1,5 @@
-# qutil
-A C++20 template static library providing useful containers and algorithms
+<h3 align="center">qutil</h3>
+<h4 align="center">Provides modern and useful containers and algorithms.</h4>
 
  ## **Installation**
 ```bash
