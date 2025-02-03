@@ -24,10 +24,7 @@ For an example of how to use qutil in a CMake project, see the following [CMakeL
 ### 🧰 `qutil::containers`
 <details>
 <summary><strong>🔒 tuple<Args...></strong> - main features</summary>
-```cpp
-template <class Tuple, class F>
-constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto) {
-```
+**а**
 </details>
 
 ### 📁 `qutil::io`
