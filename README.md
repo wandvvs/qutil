@@ -1,4 +1,4 @@
-<h3 align="center">qutil</h3>
+<h1 align="center">qutil</h1>
 <h4 align="center">Provides modern and useful containers and algorithms.</h4>
 
  ## **Installation**
