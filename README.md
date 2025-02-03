@@ -22,26 +22,9 @@ For an example of how to use qutil in a CMake project, see the following [CMakeL
 ## **📦 Modules**
 
 ### 🧰 `qutil::containers`
-- `tuple<Args...>` - tumple implementation with additional support functions:
-```cpp
-template <class Tuple, class F>
-constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto);
-
-template <class Tuple, class F>
-constexpr auto transform(Tuple &&tuple, F &&f) -> decltype(auto);
-
-template <class Tuple, class Predicate>
-constexpr auto find_if(Tuple &&tuple, Predicate predicate) -> decltype(auto);
-
-template <class Tuple, typename Predicate>
-constexpr auto all_of(Tuple &&tuple, Predicate predicate) -> bool;
-
-template <class Tuple, typename Predicate>
-constexpr auto none_of(Tuple &&tuple, Predicate predicate) -> bool;
-
-template <class Tuple, typename Predicate>
-constexpr auto any_of(Tuple &&tuple, Predicate predicate) -> bool;
-```
+- `tuple<Args...>` - tumple implementation with additional support functions: `for_each`, `transform`, `find_if`, `all_of`, `none_of`, `any_of`.
+- `constexpr_string<N>` - compile time string.
+- `result<T,E>` - result type for error handling like Rust `Result<T, E`.
 
 ### 📁 `qutil::io`
 - `dump(Args...)` - pretty print function for a values and iterable types like a Python `print` to the stream (`std::cout`) by default.
