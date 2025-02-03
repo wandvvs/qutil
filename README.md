@@ -1,5 +1,5 @@
-<h1 align="center">qutil</h1>
-<h3 align="center">Provides modern and useful containers and algorithms.</h3>
+<h1 align="center">🛠️ qutil</h1>
+<h3 align="center">Provides modern and useful containers and algorithms</h3>
 
 <p align="center">
      <a href="https://github.com/wandvvs/qutil/issues">
