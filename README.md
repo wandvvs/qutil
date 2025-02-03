@@ -28,6 +28,7 @@ For an example of how to use qutil in a CMake project, see the following [CMakeL
 template <class Tuple, class F>
 constexpr auto for_each(Tuple &&tuple, F &&f) -> decltype(auto) {
 ```
+</details>
 
 ### 📁 `qutil::io`
 - `dump(Args...)` - pretty print function for a values and iterable types like a Python `print` to the stream (`std::cout`) by default.
