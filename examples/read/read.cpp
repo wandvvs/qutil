@@ -9,5 +9,5 @@ auto main() -> int {
   std::vector v{1, 5, 7, 4};
 
   qutil::io::dump(std::ofstream(PATH.data()), v, "abc");
-  qutil::io::dump(qutil::io::read(PATH));
+  qutil::io::dumpln(qutil::io::read(PATH));
 }
