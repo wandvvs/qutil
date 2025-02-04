@@ -28,6 +28,7 @@ For an example of how to use qutil in a CMake project, see the following [CMakeL
 
 ### 📁 `qutil::io`
 - `dump(Args...)` - pretty print function for a values and iterable types like a Python `print` to the stream (`std::cout`) by default.
+- `dumpln(Args...)`
 - `read(source)` - read from file to `std::string`.
 
 Check out [examples](https://github.com/wandvvs/qutil/tree/master/examples) of all the qutil features.
