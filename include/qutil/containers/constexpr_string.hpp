@@ -9,7 +9,7 @@ namespace qutil::containers {
 template <std::size_t Size>
 class constexpr_string {
  public:
-  explicit constexpr_string() = default;
+  constexpr explicit constexpr_string() = default;
   constexpr explicit constexpr_string(std::string_view str) {
     if constexpr(Size == 0) {
       return;
