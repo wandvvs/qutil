@@ -1,6 +1,6 @@
 #pragma once
 
-#include <algorithm>
+// #include <algorithm>
 #include <chrono>
 #include <cstring>
 #include <ctime>
@@ -8,13 +8,11 @@
 #include <source_location>
 #include <sstream>
 #include <string_view>
-#include <tuple>
 #include <type_traits>
 #include <utility>
 
-#include "../containers/constexpr_string.hpp"
 #include "../containers/tuple.hpp"
-#include "sink/sink.hpp"
+#include "sink.hpp"
 
 namespace qutil::io {
 
@@ -29,7 +27,9 @@ class logger {
   logger& operator=(const logger&) = delete;
   logger& operator=(logger&&) = delete;
 
-  void log(log_level level, std::string_view message, const std::source_location& loc = std::source_location::current()) {
+  void log(log_level level,
+           std::string_view message,
+           const std::source_location& loc = std::source_location::current()) {  // TODO(sue): make thread-safe
     const auto now_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::ostringstream result_message;
     result_message << (std::put_time(std::localtime(&now_time), "%F %T")) << " " << level_to_string(level);
@@ -38,6 +38,12 @@ class logger {
 
     qutil::containers::for_each(sinks_, [&result_message, &level](auto& elem) {
       elem.log({result_message.str(), level});
+    });
+  }
+
+  void set_level(log_level new_level) {
+    qutil::containers::for_each(sinks_, [new_level](auto& elem) {
+      elem.set_level(new_level);
     });
   }
 

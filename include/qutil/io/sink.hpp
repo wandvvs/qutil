@@ -44,6 +44,10 @@ class sink {
 
   virtual ~sink() = default;
 
+  void set_level(log_level new_level) {
+    level_ = new_level;
+  }
+
  protected:
   virtual void flush() = 0;
   virtual void write(std::string_view str) = 0;
