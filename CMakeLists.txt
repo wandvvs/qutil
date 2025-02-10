@@ -31,5 +31,6 @@ if(BUILD_EXAMPLES)
     add_subdirectory(examples/result)
     add_subdirectory(examples/dump)
     add_subdirectory(examples/read)
+    add_subdirectory(examples/logger)
 endif()
 
