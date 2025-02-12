@@ -4,6 +4,7 @@
 #include <chrono>
 #include <cstring>
 #include <ctime>
+#include <format>
 #include <iomanip>
 #include <source_location>
 #include <sstream>
@@ -27,17 +28,12 @@ class logger {
   logger& operator=(const logger&) = delete;
   logger& operator=(logger&&) = delete;
 
-  void log(log_level level,
-           std::string_view message,
-           const std::source_location& loc = std::source_location::current()) {  // TODO(sue): make thread-safe
-    const auto now_time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-    std::ostringstream result_message;
-    result_message << (std::put_time(std::localtime(&now_time), "%F %T")) << " " << level_to_string(level);
-    result_message << " at " << source_location_str(loc);
-    result_message << " > " << message << "\n";
+  void log(log_level level, std::string_view message, const std::source_location& loc = std::source_location::current()) {
+    std::string result_message = std::format(
+        "{0:%F %R} {1} at {2} > {3}\n", std::chrono::system_clock::now(), level_to_string(level), source_location_str(loc), message);
 
     qutil::containers::for_each(sinks_, [&result_message, &level](auto& elem) {
-      elem.log({result_message.str(), level});
+      elem.log({result_message, level});
     });
   }
 
@@ -60,10 +56,7 @@ class logger {
   }
 
   std::string source_location_str(const std::source_location& loc) {
-    std::stringstream r;
-    r << loc.file_name() << ":" << loc.line() << ":" << loc.column() << ":";
-
-    return r.str();
+    return std::format("{}:{}:{}:", loc.file_name(), loc.line(), loc.column());
   }
 
   sinks_t sinks_;
